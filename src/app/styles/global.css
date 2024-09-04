@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter;
+  font-weight: 400;
+  background: rgb(245, 245, 245);
+}
+
+label {
+  color: rgb(129, 129, 130);
+  font-size: 16px;
+  line-height: 28px;
+  padding-bottom: 3px;
+}

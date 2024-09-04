@@ -1,0 +1,17 @@
+.select {
+  display: flex;
+  flex-direction: column;
+
+  &__select {
+    color: rgb(171, 181, 190);
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 21px;
+    width: 216px;
+    height: 38px;
+
+    &:invalid {
+      color: gray;
+    }
+  }
+}

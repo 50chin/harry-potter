@@ -1,0 +1,31 @@
+.card {
+  width: 334px;
+  height: 529px;
+  border: 1px solid rgb(222, 226, 230);
+  border-radius: 4px;
+  background: rgb(255, 255, 255);
+  padding-bottom: 25px;
+
+  &__desc {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 25px;
+  }
+
+  &__img {
+    width: 334px;
+    height: 322px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  &__name {
+    font-weight: 800;
+    font-size: 20px;
+  }
+
+  &__bio {
+    font-size: 16px;
+  }
+}

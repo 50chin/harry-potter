@@ -1,0 +1,13 @@
+.input {
+  display: flex;
+  flex-direction: column;
+
+  &__search {
+    width: 452px;
+    height: 38px;
+    color: rgb(23, 24, 25);
+    font-size: 16px;
+    line-height: 21px;
+    padding-left: 15px;
+  }
+}
