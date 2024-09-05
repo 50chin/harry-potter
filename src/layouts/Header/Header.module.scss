@@ -1,0 +1,26 @@
+.header {
+  padding: 64px 0 40px;
+  border-bottom: 1px solid rgb(222, 226, 230);
+
+  &__top {
+    color: rgb(0, 0, 0);
+  }
+
+  &__title {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 77px;
+    letter-spacing: -2%;
+  }
+
+  &__subtitle {
+    font-size: 21px;
+    line-height: 36px;
+  }
+
+  &__search {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+  }
+}
