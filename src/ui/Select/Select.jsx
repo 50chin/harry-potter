@@ -1,10 +1,14 @@
 import s from './Select.module.scss';
 
-export const Select = () => {
+export const Select = ({ selectHandle }) => {
   return (
     <div className={s.select}>
       <label htmlFor="House">House</label>
-      <select className={s.select__select} defaultValue={'DEFAULT'}>
+      <select
+        className={s.select__select}
+        defaultValue={'DEFAULT'}
+        onChange={selectHandle}
+      >
         <option value="DEFAULT" disabled>
           Choice house
         </option>

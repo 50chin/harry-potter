@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { Input } from '../../ui/Input/Input';
 import { Select } from '../../ui/Select/Select';
 import { Container } from '../Container/Container';
 import s from './Header.module.scss';
 
-export const Header = () => {
+export const Header = ({ inputHandler, selectHandle }) => {
   return (
     <header className={s.header}>
       <Container>
@@ -14,8 +15,8 @@ export const Header = () => {
           </p>
         </div>
         <div className={s.header__search}>
-          <Input />
-          <Select />
+          <Input inputHandler={inputHandler} />
+          <Select selectHandle={selectHandle} />
         </div>
       </Container>
     </header>

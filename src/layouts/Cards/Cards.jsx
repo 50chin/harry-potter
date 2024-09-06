@@ -2,14 +2,15 @@ import { Card } from '../../components/Card/Card';
 import { Container } from '../Container/Container';
 import s from './Cards.module.scss';
 
-export const Cards = ({ data }) => {
+export const Cards = ({ newData, likedPerson }) => {
   return (
     <section className={s.cards}>
       <Container>
         <div className={s.cards__wrapper}>
-          {data.map((el) => (
+          {newData.map((el) => (
             <Card
               key={el.id}
+              id={el.id}
               image={el.image}
               name={el.name}
               actor={el.actor}
@@ -17,6 +18,8 @@ export const Cards = ({ data }) => {
               house={el.house}
               core={el.wand.core}
               alive={el.alive}
+              liked={el.liked}
+              likedPerson={likedPerson}
             />
           ))}
         </div>
