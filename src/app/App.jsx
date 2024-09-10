@@ -1,44 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Header } from '../layouts/Header/Header';
 import { Main } from '../layouts/Main/Main';
-import { renderToReadableStream } from 'react-dom/server';
-
-// const API_URL =
-//   'https://harry-potter-api-3a23c827ee69.herokuapp.com/api/characters';
-// let data = JSON.parse(localStorage.getItem('data')) ?? [];
-// let choice = [];
-// // Запрос Fetch
-// async function getApi(API) {
-//   try {
-//     let dataApi = await fetch(API);
-//     dataApi = await dataApi.json();
-//     dataApi.forEach((el) => {
-//       el.liked = false;
-//     });
-//     data = dataApi;
-//     choice = dataApi;
-//     renderCards(choice, data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
-// console.log(data);
-
-// function getFetch(API) {
-//   if (data.length) {
-//     choice = data;
-//     // renderCards(choice, data);
-//   } else {
-//     getApi(API);
-//   }
-// }
-
-// getFetch(API_URL);
+import { Footer } from '../layouts/Footer/Footer';
 
 function App() {
-  const defaultValue = JSON.parse(localStorage.getItem('data')) ?? [];
-  const [data, setData] = useState(defaultValue);
+  const [data, setData] = useState([]);
+  const [finder, setFinder] = useState([]);
+  const [newData, setNewData] = useState([]);
+  const [inputValue, setInputValue] = useState('');
   // Функция для прочтения Api
   async function getApiData() {
     try {
@@ -46,20 +15,70 @@ function App() {
         'https://harry-potter-api-3a23c827ee69.herokuapp.com/api/characters'
       );
       dataApi = await dataApi.json();
-      setData(dataApi);
+      const initialData = dataApi.map((el) => ({ ...el, liked: false }));
+      setData(initialData);
+      setNewData(initialData);
+      setFinder(initialData);
     } catch (err) {
       console.log(err);
     }
   }
 
+  // Функция по поиску Input
+  function inputHandler(evt) {
+    const value = evt.target.value.toLowerCase().trim();
+    const findUser = finder.filter((el) =>
+      el.name.toLowerCase().includes(value)
+    );
+    setNewData(findUser);
+  }
+
+  // Функция по выбору Select
+  function selectHandle(evt) {
+    let value = evt.target.value;
+    if (value === 'All') {
+      setNewData(data);
+    } else {
+      const findHouse = data.filter(
+        (el) => el.house.toLowerCase() == value.toLowerCase()
+      );
+      setFinder(findHouse);
+      setNewData(findHouse);
+    }
+  }
+
+  // Функция по изменению ключа liked (true / false)
+  function likedPerson(id) {
+    const updatedData = data.map((el) => {
+      return el.id === id ? { ...el, liked: !el.liked } : el;
+    });
+    setData(updatedData);
+    setNewData(updatedData);
+    localStorage.setItem('data', JSON.stringify(updatedData));
+  }
+
   useEffect(() => {
-    getApiData();
-  }, []);
+    const dataLocal = JSON.parse(localStorage.getItem('data')) ?? [];
+    if (dataLocal.length) {
+      setData(dataLocal);
+      setNewData(dataLocal);
+      setFinder(dataLocal);
+    } else {
+      getApiData();
+    }
+  }, []); // Загрузка данных только при монтировании компонента
+
+  useEffect(() => {
+    if (data.length) {
+      localStorage.setItem('data', JSON.stringify(data));
+    }
+  }, [data]); // Сохранение данных в localStorage при изменении data
 
   return (
     <>
-      <Header />
-      <Main data={data} />
+      <Header inputHandler={inputHandler} selectHandle={selectHandle} />
+      <Main newData={newData} likedPerson={likedPerson} />
+      <Footer />
     </>
   );
 }

@@ -1,0 +1,27 @@
+.footer {
+  position: fixed;
+  display: flex;
+  justify-content: end;
+  padding-right: 30px;
+  margin-bottom: 20px;
+  bottom: 0;
+  width: 100%;
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 157px;
+    height: 48px;
+    color: #3f444a;
+    font-size: 16px;
+    line-height: 28px;
+    border-radius: 48px;
+    background: #fff;
+    box-shadow: 0px 8px 35px 0px rgba(0, 0, 0, 0.16);
+    &:hover {
+      background: #dfd8d8;
+    }
+  }
+}
