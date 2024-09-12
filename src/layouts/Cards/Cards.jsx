@@ -1,8 +1,9 @@
-import { Card } from '../../components/Card/Card';
-import { Container } from '../Container/Container';
-import s from './Cards.module.scss';
+import { Card } from "../../components/Card/Card";
+import { Container } from "../Container/Container";
+import s from "./Cards.module.scss";
 
 export const Cards = ({ newData, likedPerson }) => {
+  console.log(newData);
   return (
     <section className={s.cards}>
       <Container>

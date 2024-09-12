@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Header } from '../layouts/Header/Header';
-import { Main } from '../layouts/Main/Main';
-import { Footer } from '../layouts/Footer/Footer';
+import { useEffect, useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Home } from "../pages/Home/Home";
+import { Favorites } from "../pages/Favorites/Favorites";
 
 function App() {
   const [data, setData] = useState([]);
   const [finder, setFinder] = useState([]);
   const [newData, setNewData] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   // Функция для прочтения Api
   async function getApiData() {
     try {
       let dataApi = await fetch(
-        'https://harry-potter-api-3a23c827ee69.herokuapp.com/api/characters'
+        "https://harry-potter-api-3a23c827ee69.herokuapp.com/api/characters"
       );
       dataApi = await dataApi.json();
       const initialData = dataApi.map((el) => ({ ...el, liked: false }));
@@ -36,7 +36,7 @@ function App() {
   // Функция по выбору Select
   function selectHandle(evt) {
     let value = evt.target.value;
-    if (value === 'All') {
+    if (value === "All") {
       setNewData(data);
     } else {
       const findHouse = data.filter(
@@ -54,11 +54,11 @@ function App() {
     });
     setData(updatedData);
     setNewData(updatedData);
-    localStorage.setItem('data', JSON.stringify(updatedData));
+    localStorage.setItem("data", JSON.stringify(updatedData));
   }
 
   useEffect(() => {
-    const dataLocal = JSON.parse(localStorage.getItem('data')) ?? [];
+    const dataLocal = JSON.parse(localStorage.getItem("data")) ?? [];
     if (dataLocal.length) {
       setData(dataLocal);
       setNewData(dataLocal);
@@ -70,15 +70,35 @@ function App() {
 
   useEffect(() => {
     if (data.length) {
-      localStorage.setItem('data', JSON.stringify(data)); // Сохранение данных в localStorage при изменении data
+      localStorage.setItem("data", JSON.stringify(data)); // Сохранение данных в localStorage при изменении data
     }
   }, [data]);
 
+  // const router = createBrowserRouter([
+  //   {
+  //     path: "/",
+  //     element: (
+  //       <Home
+  //         inputHandler={inputHandler}
+  //         selectHandle={selectHandle}
+  //         newData={newData}
+  //         likedPerson={likedPerson}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     path: "/favorites",
+  //     element: <Favorites />,
+  //   },
+  // ]);
+
   return (
     <>
-      <Header inputHandler={inputHandler} selectHandle={selectHandle} />
+      {/* <RouterProvider router={router} /> */}
+
+      {/* <Header inputHandler={inputHandler} selectHandle={selectHandle} />
       <Main newData={newData} likedPerson={likedPerson} />
-      <Footer />
+      <Footer /> */}
     </>
   );
 }
