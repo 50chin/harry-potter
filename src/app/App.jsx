@@ -30,9 +30,6 @@ function App() {
     const findUser = finder.filter((el) =>
       el.name.toLowerCase().includes(value)
     );
-    // const findUserData = data.filter((el) =>
-    //   el.name.toLowerCase().includes(value)
-    // );
     setNewData(findUser);
   }
 
@@ -55,11 +52,17 @@ function App() {
     const updatedNewData = newData.map((el) => {
       return el.id === id ? { ...el, liked: !el.liked } : el;
     });
+    // это пиздец
+    const updatedFinder = finder.map((el) => {
+      return el.id === id ? { ...el, liked: !el.liked } : el;
+    });
     const updatedData = data.map((el) => {
       return el.id === id ? { ...el, liked: !el.liked } : el;
     });
     setData(updatedData);
     setNewData(updatedNewData);
+    setFinder(updatedFinder);
+
     localStorage.setItem('data', JSON.stringify(updatedData));
   }
   // функция сброса состояние newData после перехода на другую страницу
@@ -78,13 +81,13 @@ function App() {
       getApiData();
     }
   }, []);
-
+  // Сохранение данных в localStorage при изменении data
   useEffect(() => {
     if (data.length) {
-      localStorage.setItem('data', JSON.stringify(data)); // Сохранение данных в localStorage при изменении data
+      localStorage.setItem('data', JSON.stringify(data));
     }
   }, [data]);
-
+  // Создание роутера
   const router = createBrowserRouter([
     {
       path: '/',

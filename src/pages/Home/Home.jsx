@@ -9,14 +9,10 @@ export const Home = ({
   newData,
   likedPerson,
   resetSelect,
-
 }) => {
   return (
     <>
-      <Header
-        inputHandler={inputHandler}
-        selectHandle={selectHandle}
-      />
+      <Header inputHandler={inputHandler} selectHandle={selectHandle} />
       <Main newData={newData} likedPerson={likedPerson} />
       <Footer resetSelect={resetSelect} />
     </>
