@@ -2,6 +2,14 @@
   padding: 64px 0 40px;
   border-bottom: 1px solid rgb(222, 226, 230);
 
+  &__btn {
+    margin-bottom: 40px;
+    color: #3f444a;
+    font-size: 16px;
+    line-height: 28px;
+    text-decoration-line: underline;
+  }
+
   &__top {
     color: rgb(0, 0, 0);
   }

@@ -1,17 +1,20 @@
-import { useState } from "react";
-import { Input } from "../../ui/Input/Input";
-import { Select } from "../../ui/Select/Select";
-import { Container } from "../Container/Container";
-import { Button } from "../../ui/Button";
-import s from "./Header.module.scss";
+import { useState } from 'react';
+import { Input } from '../../ui/Input/Input';
+import { Select } from '../../ui/Select/Select';
+import { Container } from '../Container/Container';
+import { Button } from '../../ui/Button';
+import s from './Header.module.scss';
+import { Link } from 'react-router-dom';
 
 export const Header = ({ inputHandler, selectHandle, page }) => {
   return (
     <header className={s.header}>
       <Container>
-        {page === "favorites" ? (
+        {page === 'favorites' ? (
           <>
-            <Button>← Back To All</Button>
+            <Link to="/">
+              <Button className={s.header__btn}>← Back To All</Button>
+            </Link>
             <h1 className={s.header__title}>Liked ones</h1>
             <p className={s.header__subtitle}>
               Your favorite characters from the Harry Potter universe.
