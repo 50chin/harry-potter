@@ -66,13 +66,13 @@ function App() {
     } else {
       getApiData();
     }
-  }, []); // Загрузка данных только при монтировании компонента
+  }, []);
 
   useEffect(() => {
     if (data.length) {
-      localStorage.setItem('data', JSON.stringify(data));
+      localStorage.setItem('data', JSON.stringify(data)); // Сохранение данных в localStorage при изменении data
     }
-  }, [data]); // Сохранение данных в localStorage при изменении data
+  }, [data]);
 
   return (
     <>
